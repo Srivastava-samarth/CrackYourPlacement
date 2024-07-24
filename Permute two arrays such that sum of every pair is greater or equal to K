@@ -1,0 +1,25 @@
+bool isPossible(long long a[], long long b[], int n, long long k) {
+          sort(a,a+n);
+        sort(b,b+n,greater<long long>());
+        
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]+b[i]<k)
+            return false;
+        }
+        return true;
+    }
+
+or with time limit exceed
+
+bool isPossible(long long a[], long long b[], int n, long long k) {
+        bool ans = false;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(a[i] + b[j] >= k){
+                    ans = true;
+                }
+            }
+        }
+        return ans;
+    }
