@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        stack<ListNode*>st;
+        ListNode* temp = head;
+        while(temp != NULL){
+            st.push(temp);
+            temp = temp->next;
+        }
+        temp = head;
+        unordered_map<ListNode*, bool> visited;
+        while(true){
+            ListNode* last = st.top();
+            st.pop();
+            ListNode* next = temp->next;
+            visited[temp] = true;
+            if(visited[last]){
+                temp->next = NULL;
+                break;
+            }
+            temp->next = last;
+            visited[last] = true;
+            temp = temp->next;
+            if(visited[next]){
+                temp->next = NULL;
+                break;
+            }
+            temp->next = next;
+            temp = temp->next;
+        }
+    }
+};
